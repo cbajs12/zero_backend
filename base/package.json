@@ -1,0 +1,37 @@
+{
+  "name": "zero_backend",
+  "version": "0.1.0",
+  "description": "Node.js, Express.js, Typescript",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production npm run server",
+    "server": "node dist/index.js",
+    "lint": "tslint -c  tsconfig.json -p tsconfig.json",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-tsc\" \"npm run watch-node\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-tsc": "tsc -w",
+    "debug": "npm run build && cross-env NODE_ENV=production npm run watch-debug",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-tsc\" \"npm run server-debug\"",
+    "build": "npm run build-tsc && npm run lint",
+    "build-tsc": "tsc",
+    "server-debug": "nodemon --inspect dist/index.js"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "node": "^10.14.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/node": "^10.14.7",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "private": true
+}
